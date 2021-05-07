@@ -3,13 +3,19 @@ import { listPlant } from '../datas/listPlant'
 import PlantItem from './plantItem'
 import careScale from './careScale'
 import {useState} from 'react'
+import axios from 'axios'
+import AxiosComponents from './AxiosComponents'
 
 
 function ShoppingList({ cart, updateCart }) {
-	const categories = listPlant.reduce(
+	/*const categories = axios.get(`https://run.mocky.io/v3/159e67b4-ea66-4b73-8b15-74279d1af669`).then.reduce(
 		(acc, plant) =>
 			acc.includes(plant.category) ? acc : acc.concat(plant.category),
-		[]
+		[]*/
+		const categories = listPlant.reduce(
+			(acc, plant) =>
+				acc.includes(plant.category) ? acc : acc.concat(plant.category),
+			[]
 	)
 
 	function addToCart(name, price) {
@@ -44,6 +50,7 @@ function ShoppingList({ cart, updateCart }) {
 							light={light}
 							price={price}
 						/>
+						<AxiosComponents/>
 						<button onClick={() => addToCart(name, price)}>Ajouter</button>
 					</div>
 				))}
